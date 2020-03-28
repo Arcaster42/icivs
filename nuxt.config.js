@@ -36,10 +36,14 @@ module.exports = {
     }
   },
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
   buildModules: [
     '@nuxtjs/vuetify'
-  ]
+  ],
+  env: {
+    api: process.env.API_URL || 'http://localhost:3005'
+  }
 }
 

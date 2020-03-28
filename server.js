@@ -18,26 +18,26 @@ app.post('/user/login', async (req, res) => {
   const userObj = req.body
   if (!userObj.email || !userObj.password) res.status(401).send('Missing Credentials')
   else
-  try {
-    const results = await queries.loginUser(userObj)
-    if (results.err) res.status(401).send(results)
-    if (results.id) res.status(202).send(results)
-    res.send(results)
-  } catch (err) {
-    res.status(500).send(err)
-  }
+    try {
+      const results = await queries.loginUser(userObj)
+      if (results.err) res.status(401).send(results)
+      else if (results.id) res.status(202).send(results)
+      else res.status(500).send(results)
+    } catch (err) {
+      res.status(500).send(err)
+    }
 })
 
 app.post('/user/registration', async (req, res) => {
   const userObj = req.body
   if (!userObj.email || !userObj.password) res.status(401).send('Missing Credentials')
   else
-  try {
-    const results = await queries.registerUser(userObj)
-    res.send(results)
-  } catch (err) {
-    res.status(500).send(err)
-  }
+    try {
+      const results = await queries.registerUser(userObj)
+      res.send(results)
+    } catch (err) {
+      res.status(500).send(err)
+    }
 })
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

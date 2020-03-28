@@ -44,6 +44,9 @@ module.exports = {
   ],
   env: {
     api: process.env.API_URL || 'http://localhost:3005'
-  }
+  },
+  css: [
+    '~assets/main.css'
+  ]
 }
 

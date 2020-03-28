@@ -16,7 +16,7 @@ app.get('/test', (req, res) => {
 
 app.post('/user/login', async (req, res) => {
   const userObj = req.body
-  if (!userObj.email || !userObj.password) res.status(401).send('Missing Credentials')
+  if (!userObj.email || !userObj.password) res.status(401).send({ err: 'Missing Credentials' })
   else
     try {
       const results = await queries.loginUser(userObj)
@@ -30,7 +30,7 @@ app.post('/user/login', async (req, res) => {
 
 app.post('/user/registration', async (req, res) => {
   const userObj = req.body
-  if (!userObj.email || !userObj.password) res.status(401).send('Missing Credentials')
+  if (!userObj.email || !userObj.password) res.status(401).send({ err: 'Missing Credentials' })
   else
     try {
       const results = await queries.registerUser(userObj)

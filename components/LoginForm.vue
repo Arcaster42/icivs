@@ -28,7 +28,7 @@ export default {
           this.error = result.err
         }
         if (result.success) {
-          this.$router.push('/')
+          this.$router.push('/game')
         }
       } catch (err) {
         if (err.response) {

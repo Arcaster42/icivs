@@ -30,13 +30,15 @@ export default {
       this.$emit('setNav', isOpen)
     },
     openBuild () {
-
+      this.showNav = false
+      this.$emit('setView', 'BuildMenu')
     },
     openHelp () {
 
     },
     async logout () {
       try {
+        this.showNav = false
         const result = await this.$store.dispatch('LOGOUT')
         this.$router.push('/')
       } catch (err) {

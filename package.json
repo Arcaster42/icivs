@@ -15,6 +15,8 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@types/express": "^4.17.3",
+    "@types/knex": "^0.16.1",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -23,7 +25,8 @@
     "knex": "^0.20.13",
     "nodemon": "^2.0.2",
     "nuxt": "^2.12.1",
-    "pg": "^7.18.2"
+    "pg": "^7.18.2",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.0",

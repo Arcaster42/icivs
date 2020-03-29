@@ -2,7 +2,10 @@ export const state = () => ({
   userObj: null
 })
 
-export const getters ={
+export const getters = {
+  GET_USER_EMAIL: (state) => {
+    return state.userObj.email
+  },
   GET_USER_RESOURCES: (state) => {
     const userObj = {}
     Object.assign(userObj, state.userObj)
@@ -56,11 +59,13 @@ export const actions = {
       return err
     }
   },
-  async BUILD () {
+  async BUILD ({ commit }, buildObj) {
     try {
-
+      const buildResponse = await this.$axios.post(`${process.env.api}/game/build`, buildObj)
+      return buildResponse
     } catch (err) {
-
+      console.log(err)
+      return err
     }
   }
 }

@@ -41,6 +41,9 @@ This project is intended to do three things:
 
 ## Build Setup
 
+**WARNING**<br>
+In this stage of development, necessary security measures are not in place. Do not put provide public access to this server in its current state.
+
 - Clone the repository
 - Set up the database (queries are likely compatible with all SQL types)
 - In your local `.env` file, add database variables for `knexfile.js`

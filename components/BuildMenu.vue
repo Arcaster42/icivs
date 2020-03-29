@@ -10,6 +10,9 @@
               <span v-for="x of Object.keys(schematic.cost)" :key="x">
                 {{ textHash[x] }}: {{ schematic.cost[x] }}
               </span>
+              <span>
+                Time: {{ schematic.time }}
+              </span>
             </v-list-item-subtitle>
             <v-list-item-subtitle>{{ schematic.info }}</v-list-item-subtitle>
           </v-list-item-content>

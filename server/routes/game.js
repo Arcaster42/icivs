@@ -39,8 +39,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var queries_1 = require("../../database/queries");
 var routes = express_1.Router();
+routes.get('/user', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userObj, user, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userObj = req.query;
+                return [4 /*yield*/, queries_1.getUser(userObj)];
+            case 1:
+                user = _a.sent();
+                res.status(200).send(user);
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                res.status(500).send(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
 routes.get('/schematics', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var schematics, err_1;
+    var schematics, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -51,8 +71,8 @@ routes.get('/schematics', function (req, res) { return __awaiter(void 0, void 0,
                 res.send(schematics);
                 return [3 /*break*/, 3];
             case 2:
-                err_1 = _a.sent();
-                res.status(500).send(err_1);
+                err_2 = _a.sent();
+                res.status(500).send(err_2);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

@@ -17,5 +17,18 @@ export const actions = {
     } else {
       return { err: 'Login Error' }
     }
+  },
+  async REGISTER ({ commit }, userObj) {
+    try {
+      const registerResponse = await this.$axios.post(`${process.env.api}/user/registration`, { email: userObj.email, password: userObj.password })
+      if (registerResponse.status === 201) {
+        return registerResponse.data
+      } else {
+        return { err: 'Registration Error' }
+      }
+    } catch (err) {
+      if (err.response.status === 409) return err.response.data
+      console.log(err)
+    }
   }
 }

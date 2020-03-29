@@ -27,3 +27,8 @@ export interface QueryRegister {
   err?: string | Error
   success?: string
 }
+
+export interface BuildRequest {
+  email: string
+  tag: string
+}

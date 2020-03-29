@@ -62,7 +62,7 @@ export const actions = {
   async BUILD ({ commit }, buildObj) {
     try {
       const buildResponse = await this.$axios.post(`${process.env.api}/game/build`, buildObj)
-      return buildResponse
+      return buildResponse.data
     } catch (err) {
       console.log(err)
       return err

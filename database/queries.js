@@ -61,9 +61,38 @@ const cycleUpdate = async (userObj) => {
   }
 }
 
+const build = async (buildObj) => {
+  try {
+    const schematic = await db('civ_schematics').where({ tag: buildObj.tag }).first()
+    if (!schematic) return { err: 'Schematic Error' }
+    const user = await db('civ_users').where({ email: buildObj.email }).first()
+    if (!user) return { err: 'User Error' }
+    // Validate build limit
+    const userBuildings = JSON.parse(user.buildings)
+    if (userBuildings[buildObj.tag] >= schematic.limit)
+      return { err: 'Limit Reached' }
+    // Validate build cost
+    const schematicCost = JSON.parse(schematic.cost)
+    for (const resource of Object.keys(schematicCost)) {
+      if (user[resource] < schematicCost[resource])
+        return { err: `Insufficient ${resource}.` }
+    }
+    // Deduct resources
+    for (const resource of Object.keys(schematicCost)) {
+      await db('civ_users').where({ email: buildObj.email }).decrement(resource, schematicCost[resource])
+    }
+    // Add to construction queue
+    await db('civ_construction').insert({ civ_user: buildObj.email, civ_tag: buildObj.tag, civ_time: schematic.time })
+    return { success: `Construction of ${schematic.title} started.` }
+  } catch (err) {
+
+  }
+}
+
 module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
-  cycleUpdate
+  cycleUpdate,
+  build
 }

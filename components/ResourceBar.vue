@@ -1,5 +1,5 @@
 <template>
-  <v-sheet color="light-blue">
+  <v-sheet color="light-blue" class="mt-2">
     <span>Food: {{ resources.food }} -- Wood: {{ resources.wood }} -- Stone: {{ resources.stone }} -- Iron: {{ resources.iron }} -- Gold: {{ resources.gold }}</span><br>
     <span>Money: {{ resources.money }} -- Population: {{ resources.free_pop }}</span>
   </v-sheet>

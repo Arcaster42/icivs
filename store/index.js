@@ -2,6 +2,18 @@ export const state = () => ({
   userObj: null
 })
 
+export const getters ={
+  GET_USER_RESOURCES: (state) => {
+    const userObj = {}
+    Object.assign(userObj, state.userObj)
+    delete userObj['email']
+    delete userObj['token']
+    delete userObj['join_date']
+    delete userObj['buildings']
+    return userObj
+  }
+}
+
 export const mutations = {
   SET_USER (state, userObj) {
     state.userObj = userObj
@@ -17,6 +29,10 @@ export const actions = {
     } else {
       return { err: 'Login Error' }
     }
+  },
+  async LOGOUT ({ commit }) {
+    commit('SET_USER', null)
+    return { success: 'Logged Out' }
   },
   async REGISTER ({ commit }, userObj) {
     try {
@@ -38,6 +54,13 @@ export const actions = {
     } catch (err) {
       console.log(err)
       return err
+    }
+  },
+  async BUILD () {
+    try {
+
+    } catch (err) {
+
     }
   }
 }

@@ -26,13 +26,14 @@ const registerUser = async (userObj) => {
 
 const loginUser = async (userObj) => {
   try {
-    const results = await db('civ_users').where({ email: userObj.email })
-    if (results.length === 0) return { err: 'Invalid E-Mail' }
-    if (results.length > 0) {
-      const valid = await bcrypt.compare(userObj.password, results[0].pass_hash)
+    const result = await db('civ_users').where({ email: userObj.email }).first()
+    if (!result) return { err: 'Invalid E-Mail' }
+    if (result) {
+      const valid = await bcrypt.compare(userObj.password, result.pass_hash)
       if (!valid) return { err: 'Invalid Credentials' }
       if (valid) {
-        return results[0]
+        delete result['pass_hash']
+        return result
       }
     }
   } catch (err) {
@@ -44,6 +45,16 @@ const loginUser = async (userObj) => {
 const getAllUsers = async () => {
   try {
     const results = await db('civ_users')
+    return results
+  } catch (err) {
+    console.log(err)
+    return err
+  }
+}
+
+const getSchematics = async () => {
+  try {
+    const results = await db('civ_schematics')
     return results
   } catch (err) {
     console.log(err)
@@ -93,6 +104,7 @@ module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
+  getSchematics,
   cycleUpdate,
   build
 }

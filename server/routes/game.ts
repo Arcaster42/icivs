@@ -1,8 +1,17 @@
 import { Router, Request, Response } from 'express'
-import { build } from '../../database/queries'
+import { getSchematics, build } from '../../database/queries'
 import { BuildRequest } from '../../typescript/server'
 
 const routes: Router = Router()
+
+routes.get('/schematics', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const schematics = await getSchematics()
+    res.send(schematics)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+})
 
 routes.post('/build', async (req: Request, res: Response): Promise<void> => {
   const buildObj: BuildRequest = req.body

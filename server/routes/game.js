@@ -39,6 +39,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var queries_1 = require("../../database/queries");
 var routes = express_1.Router();
+routes.get('/schematics', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var schematics, err_1;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, queries_1.getSchematics()];
+            case 1:
+                schematics = _a.sent();
+                res.send(schematics);
+                return [3 /*break*/, 3];
+            case 2:
+                err_1 = _a.sent();
+                res.status(500).send(err_1);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
 routes.post('/build', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var buildObj, result;
     return __generator(this, function (_a) {

@@ -19,7 +19,7 @@
         </v-list-item>
       </v-list-item-group>
     </v-list>
-    <v-dialog v-model="showModal">
+    <v-dialog persistent v-model="showModal">
       <v-card class="text-center">
         <v-card-title>Construction</v-card-title>
         <v-card-text>
@@ -28,12 +28,15 @@
           </p>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" :disabled="!canAfford">Confirm</v-btn>
+          <v-btn color="primary" width="35%" :disabled="!canAfford" :loading="loading" @click="build">Confirm</v-btn>
           <v-spacer/>
-          <v-btn color="error" @click="showModal=false">Cancel</v-btn>
+          <v-btn color="error" width="35%" :disabled="loading" @click="showModal=false">Cancel</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-snackbar :color="alertColor" v-model="alertShow">
+      {{ alert }}
+    </v-snackbar>
   </v-content>
 </template>
 
@@ -54,10 +57,14 @@ export default {
       free_pop: 'Population',
       arms: 'Arms'
     },
+    loading: false,
     schematics: null,
     selected: null,
     canAfford: null,
-    showModal: false
+    showModal: false,
+    alert: null,
+    alertColor: null,
+    alertShow: false
   }),
   methods: {
     select (schematic) {
@@ -71,9 +78,38 @@ export default {
       }
       this.canAfford = canAfford
       this.showModal = true
+    },
+    async build () {
+      this.loading = true
+      const buildObj = { email: this.email, tag: this.selected.tag }
+      try {
+        const result = await this.$store.dispatch('BUILD', buildObj)
+        if (result.success) {
+          this.alert = result.success
+          this.alertColor = 'success'
+          this.alertShow = true
+        }
+        if (result.err) {
+          this.alert = result.err
+          this.alertColor = 'error'
+          this.alertShow = true
+        }
+        await this.$store.dispatch('USER')
+        this.showModal = false
+      } catch (err) {
+        this.alert = err
+        this.alertColor = 'error'
+        this.alertShow = true
+        console.log(err)
+      } finally {
+        this.loading = false
+      }
     }
   },
   computed: {
+    email () {
+      return this.$store.getters.GET_USER_EMAIL
+    },
     resources () {
       return this.$store.getters.GET_USER_RESOURCES
     }

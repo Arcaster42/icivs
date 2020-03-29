@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer mini-variant absolute v-model="showNav" @input="emitNav">
-    <v-list-item v-for="item of items" :key="item.title">
+    <v-list-item v-for="item of items" :key="item.title" @click="item.click">
       <v-list-item-icon><v-icon>{{ item.icon }}</v-icon></v-list-item-icon>
       <v-list-item-title>{{ item.title }}</v-list-item-title>
     </v-list-item>
@@ -14,9 +14,9 @@ export default {
     return {
       showNav: this.show,
       items: [
-        { icon: 'mdi-hammer', title: 'Build' },
-        { icon: 'mdi-help', title: 'Help' },
-        { icon: 'mdi-logout', title: 'Logout' }
+        { icon: 'mdi-hammer', title: 'Build', click: this.openBuild },
+        { icon: 'mdi-help', title: 'Help', click: this.openHelp },
+        { icon: 'mdi-logout', title: 'Logout', click: this.logout }
       ]
     }
   },
@@ -28,6 +28,20 @@ export default {
   methods: {
     emitNav (isOpen) {
       this.$emit('setNav', isOpen)
+    },
+    openBuild () {
+
+    },
+    openHelp () {
+
+    },
+    async logout () {
+      try {
+        const result = await this.$store.dispatch('LOGOUT')
+        this.$router.push('/')
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }

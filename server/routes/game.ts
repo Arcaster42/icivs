@@ -1,8 +1,18 @@
 import { Router, Request, Response } from 'express'
-import { getSchematics, build } from '../../database/queries'
+import { getUser, getSchematics, build } from '../../database/queries'
 import { BuildRequest } from '../../typescript/server'
 
 const routes: Router = Router()
+
+routes.get('/user', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userObj: any = req.query
+    const user = await getUser(userObj)
+    res.status(200).send(user)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+})
 
 routes.get('/schematics', async (req: Request, res: Response): Promise<void> => {
   try {

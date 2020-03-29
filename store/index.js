@@ -50,6 +50,17 @@ export const actions = {
       console.log(err)
     }
   },
+  async USER ({ commit, state }) {
+    try {
+      const userResponse = await this.$axios.get(`${process.env.api}/game/user`, { params: { email: state.userObj.email } })
+      console.log(userResponse.data)
+      if (userResponse.status === 200)
+        commit('SET_USER', userResponse.data)
+    } catch (err) {
+      console.log(err)
+      return err
+    }
+  },
   async SCHEMATICS () {
     try {
       const schematicResponse = await this.$axios.get(`${process.env.api}/game/schematics`)

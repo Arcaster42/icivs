@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 const { registerUser, loginUser } = require('./database/queries')
 const { gameCycle } = require('./server/cycle')
 
-setInterval(gameCycle, 1000)
+setInterval(gameCycle, 10000)
 
 app.get('/test', (req, res) => {
   res.status(200).send('OK')
@@ -37,7 +37,8 @@ app.post('/user/registration', async (req, res) => {
   else
     try {
       const results = await registerUser(userObj)
-      res.send(results)
+      if (results.err) res.status(409).send(results)
+      if (results.success) res.status(201).send(results)
     } catch (err) {
       res.status(500).send(err)
     }

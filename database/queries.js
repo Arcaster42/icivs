@@ -52,6 +52,17 @@ const getAllUsers = async () => {
   }
 }
 
+const getUser = async (userObj) => {
+  try {
+    const result = await db('civ_users').where({ email: userObj.email }).first()
+    if (!result) return { err: 'User Not Found' }
+    if (result) return result
+  } catch (err) {
+    console.log(err)
+    return err
+  }
+}
+
 const getSchematics = async () => {
   try {
     const results = await db('civ_schematics')
@@ -105,6 +116,7 @@ module.exports = {
   registerUser,
   loginUser,
   getAllUsers,
+  getUser,
   getSchematics,
   cycleUpdate,
   build

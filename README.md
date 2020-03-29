@@ -1,23 +1,68 @@
-# i-civs
+# iCivs - Pocket Civilization
 
-> iCivs
+## What is iCivs?
+iCivs is an open-source, online civilization management PWA (progress web application) in which you build up your city, decide its policies, prepare your military, and enact diplomacy in real time. Even when you're not playing, your city is still working.
+
+## Development Progress
+iCivs is currently in early development and is not yet playable.
+
+## About Development
+### Why open-source?
+This project is intended to do two things:
+- Provide an example of a full-stack project for other professional or aspiring developers
+- Keep my personal skills honed and open to feedback
+
+### What technology is used?
+| Area | Technology |
+|------|------------|
+| Front-End | Nuxt |
+| Back-End | Express |
+| Database | Postgres |
+| Deployment | Heroku, Netlify |
+
+### Technology Details
+#### Front-End
+- Nuxt (Vuex implemented)
+- Vuetify (bootstrapping library for Vue)
+- Axios for API calls
+
+#### Back-End
+- Express (TypeScript)
+- Knex for database queries
+- JWT for token-based authentication
+- OWASP for security standards
+
+#### Database
+- Postgres SQL (supplied by Heroku)
+
+#### Package Management
+- Yarn
 
 ## Build Setup
 
+- Clone the repository
+- Set up the database (queries are likely compatible with all SQL types)
+- In your local `.env` file, add database variables for `knexfile.js`
+- Review environment variables in `nuxt.config.js` and change if needed
+
 ``` bash
 # install dependencies
-$ npm install # Or yarn install
+$ yarn
+
+# prepare database
+$ yarn migrate
+
+# seed game data
+$ yarn seed
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ yarn dev
 
 # build for production and launch server
-$ npm run build
-$ npm start
+$ yarn build
+$ yarn start
 
 # generate static project
-$ npm run generate
+$ yarn generate
 ```
-
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
 

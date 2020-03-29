@@ -10,12 +10,12 @@
       </h2>
       <v-row>
         <v-col>
-          <v-btn outlined nuxt width="80%" to="form">Login</v-btn>
+          <v-btn outlined nuxt width="80%" to="login">Login</v-btn>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <v-btn outlined width="80%">Register</v-btn>
+          <v-btn outlined nuxt width="80%" to="register">Register</v-btn>
         </v-col>
       </v-row>
       <v-row>

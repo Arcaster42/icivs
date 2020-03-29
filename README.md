@@ -58,6 +58,9 @@ $ yarn seed
 # serve with hot reload at localhost:3000
 $ yarn dev
 
+# start the game server
+$ yarn nodemon server
+
 # build for production and launch server
 $ yarn build
 $ yarn start

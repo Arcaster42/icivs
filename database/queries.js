@@ -80,10 +80,10 @@ const build = async (buildObj) => {
     if (!user) return { err: 'User Error' }
     // Validate build limit
     const userBuildings = JSON.parse(user.buildings)
-    if (userBuildings[buildObj.tag] >= schematic.limit)
+    if (userBuildings && userBuildings[buildObj.tag] && userBuildings[buildObj.tag] >= schematic.limit)
       return { err: 'Limit Reached' }
     // Validate build cost
-    const schematicCost = JSON.parse(schematic.cost)
+    const schematicCost = schematic.cost
     for (const resource of Object.keys(schematicCost)) {
       if (user[resource] < schematicCost[resource])
         return { err: `Insufficient ${resource}.` }
@@ -96,7 +96,8 @@ const build = async (buildObj) => {
     await db('civ_construction').insert({ civ_user: buildObj.email, civ_tag: buildObj.tag, civ_time: schematic.time })
     return { success: `Construction of ${schematic.title} started.` }
   } catch (err) {
-
+    console.log(err)
+    return err
   }
 }
 

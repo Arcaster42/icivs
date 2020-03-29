@@ -4,7 +4,7 @@ const dbConfig = require('../knexfile')[environment]
 const db = require('knex')(dbConfig)
 const bcrypt = require('bcrypt')
 
-export const registerUser = async (userObj) => {
+const registerUser = async (userObj) => {
   try {
     const results = await db('civ_users').where({ email: userObj.email })
     if (results.length > 0) return { err: 'E-Mail Unavailable' }
@@ -24,7 +24,7 @@ export const registerUser = async (userObj) => {
   }
 }
 
-export const loginUser = async (userObj) => {
+const loginUser = async (userObj) => {
   try {
     const results = await db('civ_users').where({ email: userObj.email })
     if (results.length === 0) return { err: 'Invalid E-Mail' }
@@ -41,7 +41,7 @@ export const loginUser = async (userObj) => {
   }
 }
 
-export const getAllUsers = async () => {
+const getAllUsers = async () => {
   try {
     const results = await db('civ_users')
     return results
@@ -51,7 +51,7 @@ export const getAllUsers = async () => {
   }
 }
 
-export const cycleUpdate = async (userObj) => {
+const cycleUpdate = async (userObj) => {
   try {
     const results = await db('civ_users').where({ email: userObj.email }).update(userObj)
     console.log(results)
@@ -59,4 +59,11 @@ export const cycleUpdate = async (userObj) => {
     console.log(err)
     return err
   }
+}
+
+module.exports = {
+  registerUser,
+  loginUser,
+  getAllUsers,
+  cycleUpdate
 }

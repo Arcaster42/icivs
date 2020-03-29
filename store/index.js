@@ -30,5 +30,14 @@ export const actions = {
       if (err.response.status === 409) return err.response.data
       console.log(err)
     }
+  },
+  async SCHEMATICS () {
+    try {
+      const schematicResponse = await this.$axios.get(`${process.env.api}/game/schematics`)
+      return schematicResponse.data
+    } catch (err) {
+      console.log(err)
+      return err
+    }
   }
 }

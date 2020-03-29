@@ -1,9 +1,12 @@
 <template>
   <v-content>
-    <v-btn icon @click="toggleNav"><v-icon x-large class="ml-4 mt-4">mdi-menu</v-icon></v-btn>
-    <Navigation :show="showNav" @setNav="setNav"/>
+    <v-row class="mt-2 ml-2 mr-2" justify="space-between">
+      <v-btn icon @click="toggleNav"><v-icon x-large>mdi-menu</v-icon></v-btn>
+      <h1>{{ view }}</h1>
+    </v-row>
+    <Navigation :show="showNav" @setNav="setNav" @setView="setView"/>
     <ResourceBar/>
-    <BuildMenu/>
+    <BuildMenu v-if="view==='BuildMenu'"/>
   </v-content>
 </template>
 
@@ -19,7 +22,8 @@ export default {
     BuildMenu
   },
   data: () => ({
-    showNav: false
+    showNav: false,
+    view: null
   }),
   methods: {
     toggleNav () {
@@ -27,6 +31,9 @@ export default {
     },
     setNav (value) {
       this.showNav = value
+    },
+    setView (view) {
+      this.view = view
     }
   }
 }

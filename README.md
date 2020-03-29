@@ -7,10 +7,11 @@ iCivs is an open-source, online civilization management PWA (progress web applic
 iCivs is currently in early development and is not yet playable.
 
 ## About Development
-### Why open-source?
-This project is intended to do two things:
+### Why open-source and this project?
+This project is intended to do three things:
 - Provide an example of a full-stack project for other professional or aspiring developers
 - Keep my personal skills honed and open to feedback
+- Give me experience specifically developing PWAs
 
 ### What technology is used?
 | Area | Technology |

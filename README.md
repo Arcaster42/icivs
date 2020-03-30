@@ -13,6 +13,17 @@ This project is intended to do three things:
 - Keep my personal skills honed and open to feedback
 - Give me experience specifically developing PWAs
 
+### Can I contribute?
+**Yes!** You are welcome to improve any existing code or add new code. If something needs coding changes, I will make a request for changes. If something needs balance changes, I will likely merge it as-is and make adjustments myself.
+
+I would appreciate changes in particular regarding:
+- Improved icons for buildings and resources
+- UI / UX improvements (themes, colors, navigation, transitions, etc.)
+- Query improvements
+- Best practices, especially for back-end and queries
+
+If you have advice to give and don't want to write any code yourself, please feel welcome to PR a README with what changes can be made and why, and I will be happy to merge the file and implement the changes.
+
 ### What technology is used?
 | Area | Technology |
 |------|------------|

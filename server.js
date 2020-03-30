@@ -21,4 +21,5 @@ var cycle_1 = require("./server/cycle");
 setInterval(cycle_1.gameCycle, 10000);
 app.use('/user', auth_1.default);
 app.use('/game', game_1.default);
+// Add IP for mobile testing
 app.listen(PORT, function () { return console.log("Listening on " + PORT); });

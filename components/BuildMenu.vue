@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-sheet>
     <v-list>
       <v-list-item-group>
         <v-list-item three-line v-for="schematic of schematics" :key="schematic.tag">
@@ -37,7 +37,7 @@
     <v-snackbar :color="alertColor" v-model="alertShow">
       {{ alert }}
     </v-snackbar>
-  </v-content>
+  </v-sheet>
 </template>
 
 <script>

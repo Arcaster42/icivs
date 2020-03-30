@@ -45,6 +45,8 @@ const loginUser = async (userObj) => {
 const getAllUsers = async () => {
   try {
     const results = await db('civ_users')
+    for (const result of results)
+      delete result['pass_hash']
     return results
   } catch (err) {
     console.log(err)
@@ -56,7 +58,27 @@ const getUser = async (userObj) => {
   try {
     const result = await db('civ_users').where({ email: userObj.email }).first()
     if (!result) return { err: 'User Not Found' }
-    if (result) return result
+    if (result) {
+      delete result['pass_hash']
+      return result
+    }
+  } catch (err) {
+    console.log(err)
+    return err
+  }
+}
+
+const getUserConstruction = async (userObj) => {
+  try {
+    const results = await db('civ_construction').where({ civ_user: userObj.email }).join('civ_schematics', { 'civ_construction.civ_tag': 'civ_schematics.tag' })
+    if (!results) return []
+    if (results) {
+      for (const result of results) {
+        delete result['id']
+        delete result['civ_user']
+      }
+      return results
+    }
   } catch (err) {
     console.log(err)
     return err
@@ -66,6 +88,10 @@ const getUser = async (userObj) => {
 const getAllConstruction = async () => {
   try {
     const results = await db('civ_construction')
+    for (const result of results) {
+      delete result['id']
+      delete result['civ_user']
+    }
     return results
   } catch (err) {
     console.log(err)
@@ -150,6 +176,7 @@ module.exports = {
   loginUser,
   getAllUsers,
   getUser,
+  getUserConstruction,
   getAllConstruction,
   cycleConstruction,
   getSchematics,

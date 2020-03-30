@@ -4,6 +4,11 @@ const farmCost = JSON.stringify({
   free_pop: 5
 })
 
+const lumberYardInfo = 'Generates wood every cycle.'
+const lumberYardCost = JSON.stringify({
+  food: 20,
+  free_pop: 5
+})
 
 const houseInfo = 'Provides free population growth.'
 const houseCost = JSON.stringify({
@@ -38,6 +43,7 @@ exports.seed = function(knex) {
     .then(function () {
       return knex('civ_schematics').insert([
         { tag: 'farm', title: 'Farm', info: farmInfo, cost: farmCost, time: 1, limit: 200 },
+        { tag: 'lumber_yard', title: 'Lumber Yard', info: lumberYardInfo, cost: lumberYardCost, time: 1, limit: 100 },
         { tag: 'house', title: 'House', info: houseInfo, cost: houseCost, time: 1, limit: 100 },
         { tag: 'iron_mine', title: 'Iron Mine', info: ironMineInfo, cost: ironMineCost, time: 2, limit: 20 },
         { tag: 'quarry', title: 'Quarry', info: quarryInfo, cost: quarryCost, time: 2, limit: 20 },

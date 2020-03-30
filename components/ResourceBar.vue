@@ -11,6 +11,7 @@
       <v-icon color="grey">mdi-image-filter-hdr</v-icon> {{ resources.stone }}
       <v-icon color="orange darken-3">mdi-image-filter-hdr</v-icon> {{ resources.iron }}
       <v-icon color="yellow">mdi-image-filter-hdr</v-icon>{{ resources.gold }}
+      <v-icon color="silver">mdi-sword</v-icon>{{ resources.arms }}
     </span>
   </v-sheet>
 </template>

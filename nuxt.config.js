@@ -20,6 +20,9 @@ module.exports = {
   /*
   ** Build configuration
   */
+  server: {
+    host: '0.0.0.0'
+  },
   build: {
     /*
     ** Run ESLint on save

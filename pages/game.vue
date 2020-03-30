@@ -1,11 +1,13 @@
 <template>
   <v-content>
-    <v-row class="mt-2 ml-2 mr-2" justify="space-between">
-      <v-btn icon @click="toggleNav"><v-icon x-large>mdi-menu</v-icon></v-btn>
-      <h1>{{ viewDict[view] }}</h1>
-    </v-row>
+    <v-app-bar app color="primary">
+      <v-app-bar-nav-icon @click="toggleNav"/>
+      <v-toolbar-title>{{ viewDict[view] }}</v-toolbar-title>
+      <v-spacer/>
+    </v-app-bar>
     <Navigation :show="showNav" @setNav="setNav" @setView="setView"/>
     <ResourceBar/>
+    <SummaryMenu v-if="view==='SummaryMenu'"/>
     <BuildMenu v-if="view==='BuildMenu'"/>
     <ConstructionMenu v-if="view==='ConstructionMenu'"/>
   </v-content>
@@ -14,6 +16,7 @@
 <script>
 import Navigation from '~/components/Navigation.vue'
 import ResourceBar from '~/components/ResourceBar.vue'
+import SummaryMenu from '~/components/SummaryMenu.vue'
 import BuildMenu from '~/components/BuildMenu.vue'
 import ConstructionMenu from '~/components/ConstructionMenu.vue'
 
@@ -21,14 +24,15 @@ export default {
   components: {
     Navigation,
     ResourceBar,
+    SummaryMenu,
     BuildMenu,
     ConstructionMenu
   },
   data: () => ({
     showNav: false,
-    view: 'Summary',
+    view: 'SummaryMenu',
     viewDict: {
-      'Summary': 'Summary',
+      'SummaryMenu': 'Summary',
       'BuildMenu': 'New Construction',
       'ConstructionMenu': 'Current Construction'
     }
@@ -43,6 +47,9 @@ export default {
     setView (view) {
       this.view = view
     }
+  },
+  computed: {
+    
   }
 }
 </script>

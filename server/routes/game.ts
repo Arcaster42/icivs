@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express'
-import { getUser, getSchematics, build } from '../../database/queries'
+import { getUser, getUserConstruction, getSchematics, build } from '../../database/queries'
 import { BuildRequest } from '../../typescript/server'
 
 const routes: Router = Router()
@@ -17,7 +17,17 @@ routes.get('/user', async (req: Request, res: Response): Promise<void> => {
 routes.get('/schematics', async (req: Request, res: Response): Promise<void> => {
   try {
     const schematics = await getSchematics()
-    res.send(schematics)
+    res.status(200).send(schematics)
+  } catch (err) {
+    res.status(500).send(err)
+  }
+})
+
+routes.get('/build', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userObj: any = req.query
+    const constructions = await getUserConstruction(userObj)
+    res.status(200).send(constructions)
   } catch (err) {
     res.status(500).send(err)
   }

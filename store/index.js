@@ -14,6 +14,9 @@ export const getters = {
     delete userObj['join_date']
     delete userObj['buildings']
     return userObj
+  },
+  GET_USER_BUILDINGS: (state) => {
+    return state.userObj.buildings
   }
 }
 

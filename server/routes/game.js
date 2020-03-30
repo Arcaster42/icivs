@@ -68,11 +68,31 @@ routes.get('/schematics', function (req, res) { return __awaiter(void 0, void 0,
                 return [4 /*yield*/, queries_1.getSchematics()];
             case 1:
                 schematics = _a.sent();
-                res.send(schematics);
+                res.status(200).send(schematics);
                 return [3 /*break*/, 3];
             case 2:
                 err_2 = _a.sent();
                 res.status(500).send(err_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); });
+routes.get('/build', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var userObj, constructions, err_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                userObj = req.query;
+                return [4 /*yield*/, queries_1.getUserConstruction(userObj)];
+            case 1:
+                constructions = _a.sent();
+                res.status(200).send(constructions);
+                return [3 /*break*/, 3];
+            case 2:
+                err_3 = _a.sent();
+                res.status(500).send(err_3);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }

@@ -18,7 +18,7 @@ var auth_1 = __importDefault(require("./server/routes/auth"));
 var game_1 = __importDefault(require("./server/routes/game"));
 // Game Cycle
 var cycle_1 = require("./server/cycle");
-setInterval(cycle_1.gameCycle, 10000);
+setInterval(cycle_1.gameCycle, 60000);
 app.use('/user', auth_1.default);
 app.use('/game', game_1.default);
 // Add IP for mobile testing

@@ -63,6 +63,40 @@ const getUser = async (userObj) => {
   }
 }
 
+const getAllConstruction = async () => {
+  try {
+    const results = await db('civ_construction')
+    return results
+  } catch (err) {
+    console.log(err)
+    return err
+  }
+}
+
+const cycleConstruction = async () => {
+  try {
+    await db('civ_construction').decrement('civ_time', 1)
+    const constructions = await db('civ_construction')
+    for (const construction of constructions) {
+      if (construction.civ_time < 1) {
+        const tag = construction.civ_tag
+        const email = construction.civ_user
+        const user = await db('civ_users').where({ email }).first()
+        let userBuildings = user.buildings
+        if (!userBuildings) userBuildings = {}
+        if (!userBuildings[tag]) userBuildings[tag] = 1
+        else userBuildings[tag]++
+        userBuildings = JSON.stringify(userBuildings)
+        await db('civ_construction').where({ id: construction.id }).del()
+        await db('civ_users').where({ email }).update({ buildings: userBuildings })
+      }
+    }
+  } catch (err) {
+    console.log(err)
+    return err
+  }
+}
+
 const getSchematics = async () => {
   try {
     const results = await db('civ_schematics')
@@ -76,7 +110,6 @@ const getSchematics = async () => {
 const cycleUpdate = async (userObj) => {
   try {
     const results = await db('civ_users').where({ email: userObj.email }).update(userObj)
-    console.log(results)
   } catch (err) {
     console.log(err)
     return err
@@ -90,7 +123,7 @@ const build = async (buildObj) => {
     const user = await db('civ_users').where({ email: buildObj.email }).first()
     if (!user) return { err: 'User Error' }
     // Validate build limit
-    const userBuildings = JSON.parse(user.buildings)
+    const userBuildings = user.buildings
     if (userBuildings && userBuildings[buildObj.tag] && userBuildings[buildObj.tag] >= schematic.limit)
       return { err: 'Limit Reached' }
     // Validate build cost
@@ -117,6 +150,8 @@ module.exports = {
   loginUser,
   getAllUsers,
   getUser,
+  getAllConstruction,
+  cycleConstruction,
   getSchematics,
   cycleUpdate,
   build

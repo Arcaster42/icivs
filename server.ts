@@ -21,4 +21,5 @@ setInterval(gameCycle, 10000)
 app.use('/user', auth)
 app.use('/game', game)
 
+// Add IP for mobile testing
 app.listen(PORT, (): void => console.log(`Listening on ${PORT}`))

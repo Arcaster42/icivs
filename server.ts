@@ -16,7 +16,7 @@ import game from './server/routes/game'
 
 // Game Cycle
 import { gameCycle } from './server/cycle'
-setInterval(gameCycle, 10000)
+setInterval(gameCycle, 60000)
 
 app.use('/user', auth)
 app.use('/game', game)

@@ -10,7 +10,11 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "frontend": "yarn dev",
+    "backend": "yarn nodemon server",
+    "migrate": "yarn knex migrate:latest",
+    "seed": "yarn knex seed:run"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",

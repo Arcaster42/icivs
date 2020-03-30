@@ -53,10 +53,20 @@ export const actions = {
   async USER ({ commit, state }) {
     try {
       const userResponse = await this.$axios.get(`${process.env.api}/game/user`, { params: { email: state.userObj.email } })
-      console.log(userResponse.data)
       if (userResponse.status === 200)
         commit('SET_USER', userResponse.data)
     } catch (err) {
+      console.log(err)
+      return err
+    }
+  },
+  async CONSTRUCTION ({ commit, state }) {
+    try {
+      const constructionResponse = await this.$axios.get(`${process.env.api}/game/build`, { params: { email: state.userObj.email } })
+      if (constructionResponse.status === 200)
+        return constructionResponse.data
+      else return { err: 'Retrieval Error' }
+    } catch(err) {
       console.log(err)
       return err
     }

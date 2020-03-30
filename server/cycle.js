@@ -14,6 +14,7 @@ const gameCycle = async () => {
         if (buildings.house) user.free_pop += 1 * buildings.house
         if (buildings.iron_mine) user.iron += 1 * buildings.iron_mine
         if (buildings.quarry) user.stone += 1 * buildings.quarry
+        if (buildings.gold_mine) user.gold += 1 * buildings.gold_mine
         if (buildings.market) {
           user.free_pop += 1 * buildings.market
           user.money += 100 * buildings.market

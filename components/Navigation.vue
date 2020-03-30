@@ -15,6 +15,7 @@ export default {
       showNav: this.show,
       items: [
         { icon: 'mdi-hammer', title: 'Build', click: this.openBuild },
+        { icon: 'mdi-domain', title: 'Construction', click: this.openConstruction },
         { icon: 'mdi-help', title: 'Help', click: this.openHelp },
         { icon: 'mdi-logout', title: 'Logout', click: this.logout }
       ]
@@ -32,6 +33,10 @@ export default {
     openBuild () {
       this.showNav = false
       this.$emit('setView', 'BuildMenu')
+    },
+    openConstruction () {
+      this.showNav = false
+      this.$emit('setView', 'ConstructionMenu')
     },
     openHelp () {
 

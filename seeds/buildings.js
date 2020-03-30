@@ -27,6 +27,12 @@ const quarryCost = JSON.stringify({
   free_pop: 10
 })
 
+const goldMineInfo = 'Provides gold every cycle.'
+const goldMineCost = JSON.stringify({
+  wood: 20,
+  free_pop: 15
+})
+
 const marketInfo = 'Improves free population growth and provides money every cycle.'
 const marketCost = JSON.stringify({
   wood: 20
@@ -47,6 +53,7 @@ exports.seed = function(knex) {
         { tag: 'house', title: 'House', info: houseInfo, cost: houseCost, time: 1, limit: 100 },
         { tag: 'iron_mine', title: 'Iron Mine', info: ironMineInfo, cost: ironMineCost, time: 2, limit: 20 },
         { tag: 'quarry', title: 'Quarry', info: quarryInfo, cost: quarryCost, time: 2, limit: 20 },
+        { tag: 'gold_mine', title: 'Gold Mine' , info: goldMineInfo, cost: goldMineCost, time: 2, limit: 10 },
         { tag: 'market', title: 'Market', info: marketInfo, cost: marketCost, time: 3, limit: 5 },
         { tag: 'blacksmith', title: 'Blacksmith', info: blacksmithInfo, cost: blacksmithCost, time: 3, limit: 10 }
       ])

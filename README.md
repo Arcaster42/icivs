@@ -60,10 +60,10 @@ $ yarn migrate
 $ yarn seed
 
 # serve with hot reload at localhost:3000
-$ yarn dev
+$ yarn frontend
 
 # start the game server
-$ yarn nodemon server
+$ yarn backend
 
 # build for production and launch server
 $ yarn build

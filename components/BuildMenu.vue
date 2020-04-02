@@ -8,10 +8,10 @@
             <v-list-item-title>{{ schematic.title }}</v-list-item-title>
             <v-list-item-subtitle>
               <span v-for="x of Object.keys(schematic.cost)" :key="x">
-                {{ textHash[x] }}: {{ schematic.cost[x] }}
+                <v-icon :color="resourceHash[x].color">{{ resourceHash[x].icon }}</v-icon>{{ schematic.cost[x] }}
               </span>
               <span>
-                Time: {{ schematic.time }}
+                <v-icon color="blue">mdi-clock</v-icon> {{ schematic.time }}
               </span>
             </v-list-item-subtitle>
             <v-list-item-subtitle>{{ schematic.info }}</v-list-item-subtitle>
@@ -47,15 +47,16 @@ export default {
     this.schematics = schematics
   },
   data: () => ({
-    textHash: {
-      food: 'Food',
-      wood: 'Wood',
-      stone: 'Stone',
-      iron: 'Iron',
-      gold: 'Gold',
-      money: 'Money',
-      free_pop: 'Population',
-      arms: 'Arms'
+    resourceHash: {
+      food: { icon: 'mdi-food-apply', color: 'red darken-4' },
+      wood: { icon: 'mdi-pine-tree', color: 'brown' },
+      stone: { icon: 'mdi-image-filter-hdr', color: 'grey' },
+      iron: { icon: 'mdi-image-filter-hdr', color: 'orange darken-3' },
+      gold: { icon: 'mdi-image-filter-hdr', color: 'yellow' },
+      money: { icon: 'mdi-cash', color: 'green' },
+      free_pop: { icon: 'mdi-account-group', color: 'brown lighten-3' },
+      arms: { icon: 'mdi-sword', color: 'silver' },
+      time: { icon: 'mdi-clock', color: 'blue' }
     },
     loading: false,
     schematics: null,

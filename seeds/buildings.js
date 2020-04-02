@@ -44,6 +44,20 @@ const blacksmithCost = JSON.stringify({
   iron: 5
 })
 
+const barracksInfo = 'Allows training of swordsmen.'
+const barracksCost = JSON.stringify({
+  wood: 30,
+  iron: 5,
+  free_pop: 10
+})
+
+const archeryInfo = 'Allows training of archers.'
+const archeryCost = JSON.stringify({
+  wood: 30,
+  iron: 5,
+  free_pop: 10
+})
+
 exports.seed = function(knex) {
   return knex('civ_schematics').del()
     .then(function () {
@@ -55,7 +69,9 @@ exports.seed = function(knex) {
         { tag: 'quarry', title: 'Quarry', info: quarryInfo, cost: quarryCost, time: 2, limit: 20 },
         { tag: 'gold_mine', title: 'Gold Mine' , info: goldMineInfo, cost: goldMineCost, time: 2, limit: 10 },
         { tag: 'market', title: 'Market', info: marketInfo, cost: marketCost, time: 3, limit: 5 },
-        { tag: 'blacksmith', title: 'Blacksmith', info: blacksmithInfo, cost: blacksmithCost, time: 3, limit: 10 }
+        { tag: 'blacksmith', title: 'Blacksmith', info: blacksmithInfo, cost: blacksmithCost, time: 3, limit: 10 },
+        { tag: 'barracks', title: 'Barracks', info: barracksInfo, cost: barracksCost, time: 4, limit: 5 },
+        { tag: 'archery', title: 'Archery Range', info: archeryInfo, cost: archeryCost, time: 4, limit: 5 }
       ])
     })
 }

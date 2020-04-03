@@ -1,5 +1,6 @@
 export const state = () => ({
-  userObj: null
+  userObj: null,
+  socket: null
 })
 
 export const getters = {
@@ -23,6 +24,13 @@ export const getters = {
 export const mutations = {
   SET_USER (state, userObj) {
     state.userObj = userObj
+  },
+  SET_SOCKET (state, socket) {
+    socket.on('message', (msg) => {
+      console.log(msg)
+    })
+    socket.send('TEST')
+    state.userObj.socket = socket
   }
 }
 

@@ -31,6 +31,10 @@ export default {
   },
   mounted () {
     const socket = io('http://localhost:3006')
+    socket.on('message', (msg) => {
+      if (msg === 'USER') this.$store.dispatch('USER')
+    })
+    socket.send('TEST')
     this.$store.commit('SET_SOCKET', socket)
   },
   data: () => ({

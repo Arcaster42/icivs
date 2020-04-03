@@ -28,6 +28,9 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 var ws = socketio.listen(PORT_WS);
 ws.on('connection', function (socket) {
     console.log('WS Connection');
+    setInterval(function () {
+        socket.send('USER');
+    }, 60000);
     socket.on('message', function (msg) {
         console.log(msg);
         socket.send('SERVER RESPONSE');

@@ -30,8 +30,7 @@
 <script>
 export default {
   async mounted () {
-    const constructions = await this.$store.dispatch('CONSTRUCTION')
-    this.constructions = constructions
+    await this.$store.dispatch('CONSTRUCTION')
   },
   data: () => ({
     textHash: {
@@ -43,9 +42,13 @@ export default {
       money: 'Money',
       free_pop: 'Population',
       arms: 'Arms'
-    },
-    constructions: null
+    }
   }),
+  computed: {
+    constructions () {
+      return this.$store.getters.GET_USER_CONSTRUCTION
+    }
+  }
 }
 </script>
 

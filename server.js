@@ -27,13 +27,11 @@ app.use(body_parser_1.default.urlencoded({ extended: true }));
 // Socket Server
 var ws = socketio.listen(PORT_WS);
 ws.on('connection', function (socket) {
-    console.log('WS Connection');
+    console.log('Client Connected');
     setInterval(function () {
         socket.send('USER');
     }, 60000);
     socket.on('message', function (msg) {
-        console.log(msg);
-        socket.send('SERVER RESPONSE');
     });
 });
 // Routes

@@ -26,10 +26,6 @@ export const mutations = {
     state.userObj = userObj
   },
   SET_SOCKET (state, socket) {
-    socket.on('message', (msg) => {
-      console.log(msg)
-    })
-    socket.send('TEST')
     state.userObj.socket = socket
   }
 }

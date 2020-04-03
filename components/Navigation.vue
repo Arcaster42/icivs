@@ -16,7 +16,7 @@ export default {
   async mounted () {
     try {
       const constructions = await this.$store.dispatch('CONSTRUCTION')
-      this.constructionCount = constructions.length
+      // this.constructionCount = constructions.length
     } catch (err) {
       console.log(err)
     }

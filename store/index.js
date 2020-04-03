@@ -1,5 +1,6 @@
 export const state = () => ({
-  userObj: null
+  userObj: null,
+  construction: null
 })
 
 export const getters = {
@@ -17,12 +18,18 @@ export const getters = {
   },
   GET_USER_BUILDINGS: (state) => {
     return state.userObj.buildings
+  },
+  GET_USER_CONSTRUCTION: (state) => {
+    return state.construction
   }
 }
 
 export const mutations = {
   SET_USER (state, userObj) {
     state.userObj = userObj
+  },
+  SET_CONSTRUCTIONS (state, constructions) {
+    state.construction = constructions
   }
 }
 
@@ -64,10 +71,13 @@ export const actions = {
     }
   },
   async CONSTRUCTION ({ commit, state }) {
+    console.log('Action')
     try {
       const constructionResponse = await this.$axios.get(`${process.env.api}/game/build`, { params: { email: state.userObj.email } })
-      if (constructionResponse.status === 200)
-        return constructionResponse.data
+      if (constructionResponse.status === 200) {
+        commit('SET_CONSTRUCTIONS', constructionResponse.data)
+        return { success: true }
+      }
       else return { err: 'Retrieval Error' }
     } catch(err) {
       console.log(err)

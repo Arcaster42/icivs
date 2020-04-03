@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import * as io from 'socket.io-client'
 import Navigation from '~/components/Navigation.vue'
 import ResourceBar from '~/components/ResourceBar.vue'
 import SummaryMenu from '~/components/SummaryMenu.vue'
@@ -27,6 +28,10 @@ export default {
     SummaryMenu,
     BuildMenu,
     ConstructionMenu
+  },
+  mounted () {
+    const socket = io('http://localhost:3006')
+    this.$store.commit('SET_SOCKET', socket)
   },
   data: () => ({
     showNav: false,

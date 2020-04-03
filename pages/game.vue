@@ -31,12 +31,12 @@ export default {
   },
   mounted () {
     const socket = io('http://localhost:3006')
-    socket.on('message', async (msg) => {
+    socket.on('message', (msg) => {
+      if (msg === 'USER' && this.view === 'ConstructionMenu') this.$store.dispatch('CONSTRUCTION')
       if (msg === 'USER') this.$store.dispatch('USER')
-      if (msg === 'USER' && this.view === 'ConstructionMenu') await this.$store.dispatch('CONSTRUCTION')
     })
-    socket.send('TEST')
-    this.$store.commit('SET_SOCKET', socket)
+    // TODO - Put socket in Vue.use()
+    // this.$store.commit('SET_SOCKET', socket)
   },
   data: () => ({
     showNav: false,

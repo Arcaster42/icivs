@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import * as io from 'socket.io-client'
 import Navigation from '~/components/Navigation.vue'
 import ResourceBar from '~/components/ResourceBar.vue'
@@ -32,11 +33,10 @@ export default {
   mounted () {
     const socket = io('http://localhost:3006')
     socket.on('message', (msg) => {
-      if (msg === 'USER' && this.view === 'ConstructionMenu') this.$store.dispatch('CONSTRUCTION')
-      if (msg === 'USER') this.$store.dispatch('USER')
+      if (msg === 'CYCLE' && this.view === 'ConstructionMenu') this.$store.dispatch('CONSTRUCTION')
+      if (msg === 'CYCLE') this.$store.dispatch('USER')
     })
-    // TODO - Put socket in Vue.use()
-    // this.$store.commit('SET_SOCKET', socket)
+    Vue.prototype.$socket = socket
   },
   data: () => ({
     showNav: false,

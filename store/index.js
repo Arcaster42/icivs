@@ -71,7 +71,6 @@ export const actions = {
     }
   },
   async CONSTRUCTION ({ commit, state }) {
-    console.log('Action')
     try {
       const constructionResponse = await this.$axios.get(`${process.env.api}/game/build`, { params: { email: state.userObj.email } })
       if (constructionResponse.status === 200) {

@@ -62,8 +62,10 @@ export default {
     async logout () {
       try {
         this.showNav = false
-        const result = await this.$store.dispatch('LOGOUT')
+        this.$socket.send('LOGOUT')
+        this.$socket.close()
         this.$router.push('/')
+        const result = await this.$store.dispatch('LOGOUT')
       } catch (err) {
         console.log(err)
       }

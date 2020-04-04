@@ -29,9 +29,10 @@ var ws = socketio.listen(PORT_WS);
 ws.on('connection', function (socket) {
     console.log('Client Connected');
     setInterval(function () {
-        socket.send('USER');
-    }, 60000);
+        socket.send('CYCLE');
+    }, 25000);
     socket.on('message', function (msg) {
+        console.log("Message: " + msg);
     });
 });
 // Routes

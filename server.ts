@@ -19,10 +19,10 @@ const ws: any = socketio.listen(PORT_WS)
 ws.on('connection', (socket: any) => {
     console.log('Client Connected')
     setInterval(() => {
-        socket.send('USER')
-    }, 60000)
+        socket.send('CYCLE')
+    }, 25000)
     socket.on('message', (msg: any) => {
-        
+        console.log(`Message: ${msg}`)
     })
 })
 

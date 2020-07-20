@@ -4,7 +4,7 @@
 iCivs is an open-source, online civilization management PWA (progress web application) in which you build up your city, decide its policies, prepare your military, and enact diplomacy in real time. Even when you're not playing, your city is still working.
 
 ## Development Progress
-iCivs is currently in early development and is not yet playable.
+iCivs is a proof-of-concept considered complete. It is not intended for deployment and public use in its current state.
 
 ## About Development
 ### Why open-source and this project?
